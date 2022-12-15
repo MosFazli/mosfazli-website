@@ -1,11 +1,46 @@
+<script>
+
+export default {
+  methods:{
+    leftPage(){
+      this.$router.push({ name: 'home' });
+    },
+  }
+}
+
+</script>
+
+
 <template>
   <transition name="fade" appear>
     <div>
+
+      <div v-cloak v-shortkey="['arrowleft']" @shortkey="leftPage">
+      </div>
 
       <div class="wrapper">
         <div class="bg"> Projects </div>
         <div class="fg"> Projects </div>
       </div>
+
+      <vue-particles
+          color="#dedede"
+          :particleOpacity="0.2"
+          :particlesNumber="70"
+          shapeType="circle"
+          :particleSize="4"
+          linesColor="#dedede"
+          :linesWidth="1"
+          :lineLinked="true"
+          :lineOpacity="0.1"
+          :linesDistance="150"
+          :moveSpeed="2"
+          :hoverEffect="true"
+          hoverMode="grab"
+          :clickEffect="true"
+          clickMode="push"
+      >
+      </vue-particles>
 
       <div id="leftDivMain">
         <nav>

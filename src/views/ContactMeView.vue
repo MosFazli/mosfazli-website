@@ -1,6 +1,41 @@
+<script>
+
+export default {
+  methods: {
+    upPage() {
+      this.$router.push({name: 'home'});
+    },
+  }
+}
+
+</script>
+
 <template>
   <transition name="fade" appear>
     <div id="contactDiv">
+
+      <vue-particles
+          color="#dedede"
+          :particleOpacity="0.2"
+          :particlesNumber="70"
+          shapeType="circle"
+          :particleSize="4"
+          linesColor="#dedede"
+          :linesWidth="1"
+          :lineLinked="true"
+          :lineOpacity="0.1"
+          :linesDistance="150"
+          :moveSpeed="2"
+          :hoverEffect="true"
+          hoverMode="grab"
+          :clickEffect="true"
+          clickMode="push"
+      >
+      </vue-particles>
+
+      <div v-cloak v-shortkey="['arrowup']" @shortkey="upPage">
+      </div>
+
 
       <div class="wrapper" id="contactTitle">
         <div class="bg"> Contact Me</div>
@@ -25,7 +60,31 @@
             <span></span>
             <span></span>
             <span></span>
-            Submit
+            Send
+          </a>
+        </form>
+      </div>
+
+
+      <div class="chat-box">
+        <h2>Chat</h2>
+        <form>
+          <div class="user-box" id="nameForm">
+            <input type="text" name="" required="">
+            <label>Name</label>
+          </div>
+
+
+          <div class="user-box">
+            <input type="password" name="" required=""/>
+            <label>Password</label>
+          </div>
+          <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login Or Register
           </a>
         </form>
       </div>
@@ -95,16 +154,43 @@
 </g>
 </svg>
         </div>
-          <div id="phoneContact">
-            <h3>Phone number:</h3>
-            <a>+98 938 035 4358</a>
-          </div>
+        <div id="phoneContact">
+          <h3>Phone:</h3>
+          <a>+98 938 035 4358</a>
+        </div>
       </div>
 
 
       <div class="social-box">
         <h2>Social networks</h2>
+        <div id="socialNetworks">
+          <div class="containerLinkedin">
+            <img src="../assets/media/social_networks/linkedin.png" class="social">
+            <a href="https://www.linkedin.com/in/mosfazli/" target="_blank">
+              <div class="overlayLinkedin">
+                <div class="text">Linkedin</div>
+              </div>
+            </a>
+          </div>
 
+          <div class="containerInstagram">
+            <img src="../assets/media/social_networks/instagram.png" class="social">
+            <a href="http://instagram.com/mosfazli/" target="_blank">
+              <div class="overlayInstagram">
+                <div class="text">Instagram</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="containerTelegram">
+            <img src="../assets/media/social_networks/telegram.png" class="social">
+            <a href="https://telegram.me/mosfazli" target="_blank">
+              <div class="overlayTelegram">
+                <div class="text">Telegram</div>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
 
 
@@ -134,9 +220,97 @@ body {
   width: 15vw;
 }
 
+.containerTelegram {
+  position: relative;
+  width: 5vw;
+}
+
+.overlayTelegram {
+  position: absolute;
+  bottom: 0;
+  left: 100%;
+  right: 0;
+  background-color: #008CBA;
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: .5s ease;
+}
+
+.containerTelegram:hover .overlayTelegram {
+  width: 100%;
+  left: 0;
+}
+
+.containerInstagram {
+  position: relative;
+  width: 5vw;
+}
+
+.overlayInstagram {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #d0041c;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.containerInstagram:hover .overlayInstagram {
+  height: 100%;
+}
+
+.containerLinkedin {
+  position: relative;
+  width: 5vw;
+}
+
+.overlayLinkedin {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #008ad0;
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: .5s ease;
+}
+
+.containerLinkedin:hover .overlayLinkedin {
+  width: 100%;
+}
+
+.text {
+  white-space: nowrap;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.social {
+  height: 4vw;
+  width: 4vw;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+#socialNetworks {
+  display: flex;
+  justify-content: center;
+}
+
 .message-box {
   position: absolute;
-  top: 20%;
+  top: 19%;
   left: 10%;
   width: 35vw;
   padding: 50px;
@@ -147,9 +321,9 @@ body {
   border-radius: 10px;
 }
 
-.communication-box {
+.chat-box {
   position: absolute;
-  top: 20%;
+  top: 19%;
   right: 10%;
   width: 35vw;
   padding: 50px;
@@ -160,18 +334,52 @@ body {
   border-radius: 10px;
 }
 
-.message-box {
+.chat-box h2 {
+  margin: 0 0 30px;
+  font-family: 'Wrangell', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.communication-box {
   position: absolute;
-  top: 20%;
-  left: 10%;
-  width: 35vw;
-  padding: 50px;
+  bottom: 15px;
+  left: 12%;
   transform: translate(-10%, -10%);
+  width: 30vw;
+  padding: 30px;
   background: rgba(0, 0, 0, .5);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
   border-radius: 10px;
 }
+
+.social-box {
+  position: absolute;
+  bottom: 15px;
+  right: 10%;
+  transform: translate(-10%, -10%);
+  width: 35vw;
+  padding: 30px;
+  background: rgba(0, 0, 0, .5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+  border-radius: 10px;
+}
+
+.social-box h2 {
+  margin: 0 0 30px;
+  font-family: 'Wrangell', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
 
 .communication-box h2 {
   margin: 0 0 30px;
@@ -299,6 +507,7 @@ body {
   right: 20px;
   display: inline-block;
   padding: 10px 20px;
+
   color: #03e9f4;
   font-size: 16px;
   text-decoration: none;
@@ -399,23 +608,164 @@ body {
 }
 
 
+.chat-box .user-box {
+  width: 15vw;
+  position: relative;
+  margin: auto;
+}
+
+.chat-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #d3f0f1;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #6c6c6c;
+  outline: none;
+  background: transparent;
+}
+
+.chat-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.chat-box .user-box input:focus ~ label,
+.chat-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #f4031f;
+  font-size: 12px;
+}
+
+.chat-box .user-box textarea:focus ~ label,
+.chat-box .user-box textarea:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #f4031f;
+  font-size: 12px;
+}
+
+.chat-box form a {
+  position: absolute;
+  left: 50%;
+  margin-top: 15px;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  color: #f4031f;
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  letter-spacing: 4px
+}
+
+.chat-box a:hover {
+  background: #f4031f;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #f4031f,
+  0 0 25px #f4031f,
+  0 0 50px #f4031f,
+  0 0 100px #f4031f;
+}
+
+.chat-box a span {
+  position: absolute;
+  display: block;
+}
+
+.chat-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f4031f);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+.chat-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #f4031f);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%, 100% {
+    top: 100%;
+  }
+}
+
+.chat-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #f4031f);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%, 100% {
+    right: 100%;
+  }
+}
+
+.chat-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #f4031f);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%, 100% {
+    bottom: 100%;
+  }
+}
+
+
 #contactDiv {
   display: flex;
   flex-direction: column;
   padding: 10px 10px;
   gap: 1px;
 }
-
-#contactTitle {
-
-}
-
-#leftSideContact {
-  position: absolute;
-  left: 10px;
-  top: 150px;
-}
-
 
 .fade-enter-active,
 .fade-leave-active {

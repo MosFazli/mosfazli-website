@@ -1,12 +1,46 @@
+<script>
+
+export default {
+  methods:{
+    rightPage(){
+      this.$router.push({ name: 'home' });
+    },
+  }
+}
+
+</script>
+
 <template>
   <transition name="fade" appear>
     <div>
+
+      <div v-cloak v-shortkey="['arrowright']" @shortkey="rightPage">
+      </div>
 
 
       <div class="wrapper">
         <div class="bg"> About Me </div>
         <div class="fg"> About Me </div>
       </div>
+
+      <vue-particles
+          color="#dedede"
+          :particleOpacity="0.2"
+          :particlesNumber="70"
+          shapeType="circle"
+          :particleSize="4"
+          linesColor="#dedede"
+          :linesWidth="1"
+          :lineLinked="true"
+          :lineOpacity="0.1"
+          :linesDistance="150"
+          :moveSpeed="2"
+          :hoverEffect="true"
+          hoverMode="grab"
+          :clickEffect="true"
+          clickMode="push"
+      >
+      </vue-particles>
 
       <div id="rightDivMain">
         <nav>
